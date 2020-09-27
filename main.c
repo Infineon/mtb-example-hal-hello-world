@@ -1,10 +1,11 @@
 /******************************************************************************
 * File Name:   main.c
 *
-* Description: This is the source code for the PSoC 6 MCU Hello World Example
+* Description: This is the source code for the PSoC 6 MCU: Hello World Example
 *              for ModusToolbox.
 *
-* Related Document: See Readme.md
+* Related Document: See README.md
+*
 *
 *******************************************************************************
 * (c) 2019-2020, Cypress Semiconductor Corporation. All rights reserved.
@@ -67,9 +68,6 @@ static void isr_timer(void *callback_arg, cyhal_timer_event_t event);
 *******************************************************************************/
 bool timer_interrupt_flag = false;
 bool led_blink_active_flag = true;
-
-/* UART HAL object used by Retarget-IO for Debug UART port */
-extern cyhal_uart_t cy_retarget_io_uart_obj;
 
 /* Variable for storing character read from terminal */
 uint8_t uart_read_value;
@@ -143,15 +141,12 @@ int main(void)
     printf("For more PSoC 6 MCU projects, "
            "visit our code examples repositories:\r\n\n");
 
-    printf("1. ModusToolbox Examples:\r\n https://www.cypress.com/documentation"
-            "/code-examples/psoc6-sdk-code-examples-modustoolbox-software\r\n\n");
-
-    printf("2. Mbed OS Examples:\r\n https://www.cypress.com/documentation/"
-           "code-examples/mbed-sdk-code-examples\r\n\n");
+    printf("https://github.com/cypresssemiconductorco/"
+           "Code-Examples-for-ModusToolbox-Software\r\n\n");
 
     /* Initialize timer to toggle the LED */
     timer_init();
-
+ 
     printf("Press 'Enter' key to pause or "
            "resume blinking the user LED \r\n\r\n");
 
@@ -225,7 +220,7 @@ int main(void)
         .value = 0                          /* Initial value of counter */
     };
 
-    /* Initialize the timer object. Does not use pin output ('pin' is NC) and
+    /* Initialize the timer object. Does not use input pin ('pin' is NC) and
      * does not use a pre-configured clock source ('clk' is NULL). */
     result = cyhal_timer_init(&led_blink_timer, NC, NULL);
 

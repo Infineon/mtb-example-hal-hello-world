@@ -1,32 +1,35 @@
 # This list of files to ignore includes common, tool- or user-specific files that
-# are typically not checked into a version control system (VCS). It is a superset 
+# are typically not checked into a version control system (VCS). It is a superset
 # of such files. You may want to add others, especially if you use a tool not listed
 # here. You can remove those that do not apply to you.
-# 
-# The .gitignore file is intended for the git VCS. For another VCS you would specify 
-# which files to ignore in whatever form your VCS requires. If you do not check your 
+#
+# The .gitignore file is intended for the git VCS. For another VCS you would specify
+# which files to ignore in whatever form your VCS requires. If you do not check your
 # code into a VCS, you can ignore the .gitignore file.
 
-# ModusToolbox Libraries
-libs/*
-!libs/*.lib
+# ModusToolbox library repos or information about library dependencies
+libs/
 
 # Eclipse IDE for ModusToolbox files
 .metadata/
-.cyignore
+# .cyignore
 # .settings/
 # .cproject
 # .project
 # .mtbLaunchConfigs/
 
-# Eclipse IDE for ModusToolbox build output 
+# ModusToolbox Configurator generated code
+GeneratedSource/
+
+# ModusToolbox build system output
 build/
 Debug/
 Release/
 *_build/
 
 # Visual Studio Code
-.vscode/*
+openocd.tcl
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -114,7 +117,7 @@ Backup*
 # Eclipse workspace/user-specific files/settings/caches
 .metadata/
 # .settings/
- 
+
 # Vi and Emacs backup files
 *~
 \#*\#
