@@ -142,7 +142,7 @@ int main(void)
     printf("For more PSoC 6 MCU projects, "
            "visit our code examples repositories:\r\n\n");
 
-    printf("https://github.com/cypresssemiconductorco/"
+    printf("https://github.com/Infineon/"
            "Code-Examples-for-ModusToolbox-Software\r\n\n");
 
     /* Initialize timer to toggle the LED */
