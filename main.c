@@ -1,14 +1,13 @@
 /******************************************************************************
 * File Name:   main.c
 *
-* Description: This is the source code for the PSoC 6 MCU: Hello World Example
-*              for ModusToolbox.
+* Description: This is the source code for Hello World Example using HAL APIs.
 *
 * Related Document: See README.md
 *
 *
 *******************************************************************************
-* Copyright 2019-2021, Cypress Semiconductor Corporation (an Infineon company) or
+* Copyright 2022, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
 * This software, including source code, documentation and related
@@ -40,7 +39,6 @@
 * so agrees to indemnify Cypress against all liability.
 *******************************************************************************/
 
-#include "cy_pdl.h"
 #include "cyhal.h"
 #include "cybsp.h"
 #include "cy_retarget_io.h"
@@ -49,7 +47,6 @@
 /*******************************************************************************
 * Macros
 *******************************************************************************/
-
 /* LED blink timer clock value in Hz  */
 #define LED_BLINK_TIMER_CLOCK_HZ          (10000)
 
@@ -81,7 +78,7 @@ cyhal_timer_t led_blink_timer;
 * Function Name: main
 ********************************************************************************
 * Summary:
-* This is the main function for CM4 CPU. It sets up a timer to trigger a 
+* This is the main function. It sets up a timer to trigger a
 * periodic interrupt. The main while loop checks for the status of a flag set 
 * by the interrupt and toggles an LED at 1Hz to create an LED blinky. The 
 * while loop also checks whether the 'Enter' key was pressed and 
@@ -97,6 +94,15 @@ cyhal_timer_t led_blink_timer;
 int main(void)
 {
     cy_rslt_t result;
+
+#if defined (CY_DEVICE_SECURE)
+    cyhal_wdt_t wdt_obj;
+
+    /* Clear watchdog timer so that it doesn't trigger a reset */
+    result = cyhal_wdt_init(&wdt_obj, cyhal_wdt_get_max_timeout_ms());
+    CY_ASSERT(CY_RSLT_SUCCESS == result);
+    cyhal_wdt_free(&wdt_obj);
+#endif /* #if defined (CY_DEVICE_SECURE) */
 
     /* Initialize the device and board peripherals */
     result = cybsp_init();
@@ -134,12 +140,12 @@ int main(void)
     printf("\x1b[2J\x1b[;H");
 
     printf("****************** "
-           "PSoC 6 MCU: Hello World! Example "
+           "HAL: Hello World! Example "
            "****************** \r\n\n");
 
     printf("Hello World!!!\r\n\n");
     
-    printf("For more PSoC 6 MCU projects, "
+    printf("For more projects, "
            "visit our code examples repositories:\r\n\n");
 
     printf("https://github.com/Infineon/"
