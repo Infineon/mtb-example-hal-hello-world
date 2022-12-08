@@ -80,8 +80,10 @@ cyhal_timer_t led_blink_timer;
 * Summary:
 * This is the main function. It sets up a timer to trigger a
 * periodic interrupt. The main while loop checks for the status of a flag set 
-* by the interrupt and toggles an LED at 1Hz to create an LED blinky. The 
-* while loop also checks whether the 'Enter' key was pressed and 
+* by the interrupt and toggles an LED at 1Hz to create an LED blinky. 
+* Will be achieving the 1Hz Blink rate based on the The LED_BLINK_TIMER_CLOCK_HZ and LED_BLINK_TIMER_PERIOD Macros,
+* i.e. (LED_BLINK_TIMER_PERIOD + 1) / LED_BLINK_TIMER_CLOCK_HZ = X , Here, X denotes the desired blink rate.
+* The while loop also checks whether the 'Enter' key was pressed and 
 * stops/restarts LED blinking.
 *
 * Parameters:
