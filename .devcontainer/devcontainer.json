@@ -1,0 +1,23 @@
+{
+  "name": "ModusToolBox",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "..",
+    "args": {
+      "VARIANT": "stable",
+      "TARGET": "CY8CPROTO-062-4343W"
+    }
+  },
+  "workspaceFolder": "/home/vscode/mtb-workspace",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "arm.device-manager",
+        "arm.embedded-debug"
+      ]
+    }
+  },
+  "forwardPorts": [
+    3000
+  ]
+}
