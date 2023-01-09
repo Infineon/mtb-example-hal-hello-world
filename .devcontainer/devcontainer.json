@@ -8,7 +8,7 @@
       "TARGET": "CY8CPROTO-062-4343W"
     }
   },
-  "workspaceFolder": "/home/vscode/mtb-workspace",
+  "workspaceFolder": "/home/vscode/mtb-workspace/mtb-example-hal-hello-world",
   "customizations": {
     "vscode": {
       "extensions": [

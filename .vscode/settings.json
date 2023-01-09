@@ -1,5 +1,7 @@
 {
     "remote.extensionKind": {
-        "arm.device-manager": [ "ui" ]
+        "arm.device-manager": [
+            "ui"
+        ]
     }
 }
