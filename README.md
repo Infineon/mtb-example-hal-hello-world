@@ -5,7 +5,7 @@ This code example demonstrates a simple UART communication by printing the "Hell
 
 [View this README on GitHub.](https://github.com/Infineon/mtb-example-hal-hello-world)
 
-[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMjM1NDEiLCJTcGVjIE51bWJlciI6IjAwMi0yMzU0MSIsIkRvYyBUaXRsZSI6IkhBTDogSGVsbG8gd29ybGQiLCJyaWQiOiJraGF0cmluYXZpbmsiLCJEb2MgdmVyc2lvbiI6IjQuMi4wIiwiRG9jIExhbmd1YWdlIjoiRW5nbGlzaCIsIkRvYyBEaXZpc2lvbiI6Ik1DRCIsIkRvYyBCVSI6IklDVyIsIkRvYyBGYW1pbHkiOiJQU09DIn0=)
+[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMjM1NDEiLCJTcGVjIE51bWJlciI6IjAwMi0yMzU0MSIsIkRvYyBUaXRsZSI6IkhBTDogSGVsbG8gd29ybGQiLCJyaWQiOiJraGF0cmluYXZpbmsiLCJEb2MgdmVyc2lvbiI6IjQuMy4wIiwiRG9jIExhbmd1YWdlIjoiRW5nbGlzaCIsIkRvYyBEaXZpc2lvbiI6Ik1DRCIsIkRvYyBCVSI6IklDVyIsIkRvYyBGYW1pbHkiOiJQU09DIn0=)
 
 ## Requirements
 
@@ -32,6 +32,7 @@ This code example demonstrates a simple UART communication by printing the "Hell
 - [PSoC&trade; 62S1 Wi-Fi Bluetooth&reg; pioneer kit](https://www.infineon.com/CYW9P62S1-43438EVB-01) (`CYW9P62S1-43438EVB-01`)
 - [PSoC&trade; 62S1 Wi-Fi Bluetooth&reg; pioneer kit](https://www.infineon.com/CYW9P62S1-43012EVB-01) (`CYW9P62S1-43012EVB-01`)
 - [PSoC&trade; 62S3 Wi-Fi Bluetooth&reg; prototyping kit](https://www.infineon.com/CY8CPROTO-062S3-4343W) (`CY8CPROTO-062S3-4343W`)
+- [PSoC&trade; 62S2 Wi-Fi Bluetooth&reg; prototyping kit](https://www.infineon.com/CY8CPROTO-062S2-43439) (`CY8CPROTO-062S2-43439`)
 - [PSoC&trade; 64 "Secure Boot" Wi-Fi Bluetooth&reg; pioneer kit](https://www.infineon.com/CY8CKIT-064B0S2-4343W) (`CY8CKIT-064B0S2-4343W`)
 - [PSoC&trade; 64 Standard Secure - AWS Wi-Fi Bluetooth&reg; pioneer kit](https://www.infineon.com/CY8CKIT-064S0S2-4343W) (`CY8CKIT-064S0S2-4343W`)
 - [PSoC&trade; 62S4 pioneer kit](https://www.infineon.com/CY8CKIT-062S4) (`CY8CKIT-062S4`)
@@ -331,6 +332,7 @@ Document title: *CE223541* - *HAL: Hello world*
  4.0.0   | Major update to support ModusToolbox&trade; v3.0. This version is not backward compatible with previous versions of ModusToolbox&trade;. <br /> Added support for KIT_XMC72_EVK & PSoC&trade; 64 Standard Secure Kit
  4.1.0   | Added support for CY8CPROTO-064B0S3 and CY8CPROTO-064S1-SB
  4.2.0   | Added support for CY8CEVAL-062S2-LAI-43439M2
+ 4.3.0   | Added support for CY8CPROTO-062S2-43439 
 <br>
 
 
