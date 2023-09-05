@@ -55,13 +55,6 @@
 
 
 /*******************************************************************************
-* Function Prototypes
-*******************************************************************************/
-void timer_init(void);
-static void isr_timer(void *callback_arg, cyhal_timer_event_t event);
-
-
-/*******************************************************************************
 * Global Variables
 *******************************************************************************/
 bool timer_interrupt_flag = false;
@@ -75,16 +68,22 @@ cyhal_timer_t led_blink_timer;
 
 
 /*******************************************************************************
+* Function Prototypes
+*******************************************************************************/
+void timer_init(void);
+static void isr_timer(void *callback_arg, cyhal_timer_event_t event);
+
+/*******************************************************************************
 * Function Name: main
 ********************************************************************************
 * Summary:
-* This is the main function. It sets up a timer to trigger a
-* periodic interrupt. The main while loop checks for the status of a flag set 
-* by the interrupt and toggles an LED at 1Hz to create an LED blinky. 
-* Will be achieving the 1Hz Blink rate based on the The LED_BLINK_TIMER_CLOCK_HZ and LED_BLINK_TIMER_PERIOD Macros,
-* i.e. (LED_BLINK_TIMER_PERIOD + 1) / LED_BLINK_TIMER_CLOCK_HZ = X , Here, X denotes the desired blink rate.
-* The while loop also checks whether the 'Enter' key was pressed and 
-* stops/restarts LED blinking.
+* This is the main function. It sets up a timer to trigger a periodic interrupt.
+* The main while loop checks for the status of a flag set by the interrupt and
+* toggles an LED at 1Hz to create an LED blinky. Will be achieving the 1Hz Blink
+* rate based on the The LED_BLINK_TIMER_CLOCK_HZ and LED_BLINK_TIMER_PERIOD
+* Macros,i.e. (LED_BLINK_TIMER_PERIOD + 1) / LED_BLINK_TIMER_CLOCK_HZ = X ,Here,
+* X denotes the desired blink rate. The while loop also checks whether the
+* 'Enter' key was pressed and stops/restarts LED blinking.
 *
 * Parameters:
 *  none
@@ -108,7 +107,7 @@ int main(void)
 
     /* Initialize the device and board peripherals */
     result = cybsp_init();
-    
+
     /* Board init failed. Stop program execution */
     if (result != CY_RSLT_SUCCESS)
     {
@@ -119,8 +118,9 @@ int main(void)
     __enable_irq();
 
     /* Initialize retarget-io to use the debug UART port */
-    result = cy_retarget_io_init(CYBSP_DEBUG_UART_TX, CYBSP_DEBUG_UART_RX,
-                                 CY_RETARGET_IO_BAUDRATE);
+    result = cy_retarget_io_init_fc(CYBSP_DEBUG_UART_TX, CYBSP_DEBUG_UART_RX,
+                                        CYBSP_DEBUG_UART_CTS,CYBSP_DEBUG_UART_RTS,
+                                        CY_RETARGET_IO_BAUDRATE);
 
     /* retarget-io init failed. Stop program execution */
     if (result != CY_RSLT_SUCCESS)
@@ -129,7 +129,7 @@ int main(void)
     }
 
     /* Initialize the User LED */
-    result = cyhal_gpio_init(CYBSP_USER_LED, CYHAL_GPIO_DIR_OUTPUT, 
+    result = cyhal_gpio_init(CYBSP_USER_LED, CYHAL_GPIO_DIR_OUTPUT,
                              CYHAL_GPIO_DRIVE_STRONG, CYBSP_LED_STATE_OFF);
 
     /* GPIO init failed. Stop program execution */
@@ -146,7 +146,6 @@ int main(void)
            "****************** \r\n\n");
 
     printf("Hello World!!!\r\n\n");
-    
     printf("For more projects, "
            "visit our code examples repositories:\r\n\n");
 
@@ -155,14 +154,14 @@ int main(void)
 
     /* Initialize timer to toggle the LED */
     timer_init();
- 
+
     printf("Press 'Enter' key to pause or "
            "resume blinking the user LED \r\n\r\n");
 
     for (;;)
     {
         /* Check if 'Enter' key was pressed */
-        if (cyhal_uart_getc(&cy_retarget_io_uart_obj, &uart_read_value, 1) 
+        if (cyhal_uart_getc(&cy_retarget_io_uart_obj, &uart_read_value, 1)
              == CY_RSLT_SUCCESS)
         {
             if (uart_read_value == '\r')
@@ -187,7 +186,6 @@ int main(void)
                 led_blink_active_flag ^= 1;
             }
         }
-
         /* Check if timer elapsed (interrupt fired) and toggle the LED */
         if (timer_interrupt_flag)
         {
@@ -205,21 +203,24 @@ int main(void)
 * Function Name: timer_init
 ********************************************************************************
 * Summary:
-* This function creates and configures a Timer object. The timer ticks 
-* continuously and produces a periodic interrupt on every terminal count 
-* event. The period is defined by the 'period' and 'compare_value' of the 
-* timer configuration structure 'led_blink_timer_cfg'. Without any changes, 
+* This function creates and configures a Timer object. The timer ticks
+* continuously and produces a periodic interrupt on every terminal count
+* event. The period is defined by the 'period' and 'compare_value' of the
+* timer configuration structure 'led_blink_timer_cfg'. Without any changes,
 * this application is designed to produce an interrupt every 1 second.
 *
 * Parameters:
 *  none
+*
+* Return :
+*  void
 *
 *******************************************************************************/
  void timer_init(void)
  {
     cy_rslt_t result;
 
-    const cyhal_timer_cfg_t led_blink_timer_cfg = 
+    const cyhal_timer_cfg_t led_blink_timer_cfg =
     {
         .compare_value = 0,                 /* Timer compare value, not used */
         .period = LED_BLINK_TIMER_PERIOD,   /* Defines the timer period */
@@ -239,7 +240,7 @@ int main(void)
         CY_ASSERT(0);
     }
 
-    /* Configure timer period and operation mode such as count direction, 
+    /* Configure timer period and operation mode such as count direction,
        duration */
     cyhal_timer_configure(&led_blink_timer, &led_blink_timer_cfg);
 
@@ -268,6 +269,8 @@ int main(void)
 *    callback_arg    Arguments passed to the interrupt callback
 *    event            Timer/counter interrupt triggers
 *
+* Return:
+*  void
 *******************************************************************************/
 static void isr_timer(void *callback_arg, cyhal_timer_event_t event)
 {
