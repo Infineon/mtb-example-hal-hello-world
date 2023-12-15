@@ -119,8 +119,7 @@ int main(void)
 
     /* Initialize retarget-io to use the debug UART port */
     result = cy_retarget_io_init_fc(CYBSP_DEBUG_UART_TX, CYBSP_DEBUG_UART_RX,
-                                        CYBSP_DEBUG_UART_CTS,CYBSP_DEBUG_UART_RTS,
-                                        CY_RETARGET_IO_BAUDRATE);
+            CYBSP_DEBUG_UART_CTS,CYBSP_DEBUG_UART_RTS,CY_RETARGET_IO_BAUDRATE);
 
     /* retarget-io init failed. Stop program execution */
     if (result != CY_RSLT_SUCCESS)
